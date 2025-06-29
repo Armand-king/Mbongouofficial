@@ -80,10 +80,10 @@ export default function HomePage() {
                     <Plus className="mr-2 h-5 w-5" />
                     Ajouter une transaction
                   </Button>
-                  <Button
+                 <Button
                     size="lg"
                     variant="outline"
-                    className="text-lg px-8 py-6 hover:scale-105 transition-transform bg-transparent border-green-600 text-green-600 hover:bg-green-50"
+                    className="text-lg px-8 py-6 hover:scale-105 transition-transform bg-transparent border-green-600 text-green-600 hover:bg-green-50 dark:hover:bg-green-900/20 dark:border-green-400 dark:text-green-400"
                     onClick={() => setCurrentPage("dashboard")}
                   >
                     <BarChart3 className="mr-2 h-5 w-5" />

@@ -8,10 +8,11 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Wallet, Mail, Lock, Eye, EyeOff } from "lucide-react"
+import { Mail, Lock, Eye, EyeOff } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")
@@ -41,7 +42,7 @@ export default function LoginPage() {
       } else {
         toast({
           title: "Connexion réussie",
-          description: "Bienvenue dans Mbongou.App !",
+          description: "Bienvenue dans MBONGOU !",
         })
         router.push("/")
       }
@@ -60,11 +61,11 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center p-4">
       <div className="w-full max-w-md space-y-8">
         <div className="text-center space-y-4">
-          <div className="w-16 h-16 mx-auto bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
-            <Wallet className="w-8 h-8 text-white" />
+          <div className="w-20 h-20 mx-auto rounded-full overflow-hidden shadow-lg">
+            <Image src="../mbongou" alt="MBO" width={80} height={80} className="object-cover" />
           </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Mbongou.App
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+            MBONGOU
           </h1>
           <p className="text-muted-foreground">Connectez-vous à votre compte</p>
         </div>
@@ -121,7 +122,11 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              <Button type="submit" className="w-full gradient-bg border-0" disabled={isLoading}>
+              <Button
+                type="submit"
+                className="w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 border-0 text-white"
+                disabled={isLoading}
+              >
                 {isLoading ? "Connexion..." : "Se connecter"}
               </Button>
             </form>
@@ -129,7 +134,7 @@ export default function LoginPage() {
             <div className="mt-6 text-center space-y-2">
               <p className="text-sm text-muted-foreground">
                 Pas encore de compte ?{" "}
-                <Link href="/auth/register" className="text-primary hover:underline">
+                <Link href="/auth/register" className="text-green-600 hover:underline">
                   S'inscrire
                 </Link>
               </p>

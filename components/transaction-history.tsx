@@ -25,6 +25,7 @@ import { useToast } from "@/hooks/use-toast"
 import { format } from "date-fns"
 import { fr } from "date-fns/locale"
 import { useAuth } from "@/components/auth-provider"
+import { exportTransactionsToExcel } from "@/lib/excel-export"
 
 interface Transaction {
   id: string
@@ -245,51 +246,25 @@ export default function TransactionHistory() {
   }
 
   const exportToExcel = () => {
-    const headers = ["Date", "Type", "Catégorie", "Montant", "Description"]
-    const csvContent = [
-      headers.join(","),
-      ...filteredTransactions.map((t) =>
-        [
-          t.date.split("T")[0],
-          t.type === "INCOME" ? "Revenu" : "Dépense",
-          t.category.name,
-          t.amount.toString(),
-          `"${t.description || ""}"`,
-        ].join(","),
-      ),
-    ].join("\n")
-
-    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" })
-    const url = window.URL.createObjectURL(blob)
-    const a = document.createElement("a")
-    a.href = url
-    a.download = `transactions_${getDateRangeString()}.csv`
-    a.click()
-    window.URL.revokeObjectURL(url)
-
-    toast({
-      title: "Export réussi",
-      description: "Vos transactions ont été exportées au format CSV",
-    })
-  }
-
-  const getDateRangeString = () => {
-    switch (dateRange) {
-      case "month":
-        return `${selectedMonth.padStart(2, "0")}-${selectedYear}`
-      case "year":
-        return selectedYear
-      case "custom":
-        if (customStartDate && customEndDate) {
-          return `${format(customStartDate, "yyyy-MM-dd")}_to_${format(customEndDate, "yyyy-MM-dd")}`
-        }
-        return "custom"
-      default:
-        return new Date().toISOString().split("T")[0]
+    try {
+      const filename = exportTransactionsToExcel(filteredTransactions)
+      toast({
+        title: "Export réussi",
+        description: `Vos transactions ont été exportées vers ${filename}`,
+      })
+    } catch (error) {
+      toast({
+        title: "Erreur",
+        description: "Impossible d'exporter les données",
+        variant: "destructive",
+      })
     }
   }
 
-  const availableCategories = [...new Set(transactions.map((t) => ({ id: t.category.id, name: t.category.name })))]
+  // Générer une liste de catégories uniques par ID
+  const availableCategories = Array.from(
+    new Map(transactions.map((t) => [t.category.id, { id: t.category.id, name: t.category.name }])).values()
+  )
   const months = [
     "Janvier",
     "Février",
@@ -328,7 +303,7 @@ export default function TransactionHistory() {
         <div className="space-y-8">
           {/* En-tête */}
           <div className="text-center space-y-4">
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
               Historique des transactions
             </h1>
             <p className="text-muted-foreground">Consultez et gérez toutes vos transactions</p>
@@ -342,7 +317,7 @@ export default function TransactionHistory() {
                 <Plus className="h-4 w-4 text-green-500" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-green-600">+{totalIncome.toFixed(2)} FRCFA</div>
+                <div className="text-2xl font-bold text-green-600">+{totalIncome.toFixed(2)}€</div>
                 <p className="text-xs text-muted-foreground">
                   {filteredTransactions.filter((t) => t.type === "INCOME").length} transactions
                 </p>
@@ -355,7 +330,7 @@ export default function TransactionHistory() {
                 <Minus className="h-4 w-4 text-red-500" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-red-600">-{totalExpenses.toFixed(2)} FRCFA</div>
+                <div className="text-2xl font-bold text-red-600">-{totalExpenses.toFixed(2)}€</div>
                 <p className="text-xs text-muted-foreground">
                   {filteredTransactions.filter((t) => t.type === "EXPENSE").length} transactions
                 </p>
@@ -372,7 +347,7 @@ export default function TransactionHistory() {
                   className={`text-2xl font-bold ${(totalIncome - totalExpenses) >= 0 ? "text-green-600" : "text-red-600"}`}
                 >
                   {totalIncome - totalExpenses >= 0 ? "+" : ""}
-                  {(totalIncome - totalExpenses).toFixed(2)} FRCFA
+                  {(totalIncome - totalExpenses).toFixed(2)}€
                 </div>
                 <p className="text-xs text-muted-foreground">{filteredTransactions.length} transactions au total</p>
               </CardContent>
@@ -522,10 +497,10 @@ export default function TransactionHistory() {
                 <Button
                   onClick={exportToExcel}
                   variant="outline"
-                  className="hover:scale-105 transition-transform bg-transparent"
+                  className="hover:scale-105 transition-transform bg-transparent border-green-600 text-green-600 hover:bg-green-50"
                 >
                   <FileSpreadsheet className="h-4 w-4 mr-2" />
-                  Exporter CSV
+                  Exporter Excel
                 </Button>
               </div>
             </CardContent>
@@ -570,12 +545,12 @@ export default function TransactionHistory() {
                           </TableCell>
                           <TableCell>
                             {transaction.type === "INCOME" && (
-                              <span className="text-green-600 font-semibold">+{transaction.amount.toFixed(2)} FRCFA</span>
+                              <span className="text-green-600 font-semibold">+{transaction.amount.toFixed(2)}€</span>
                             )}
                           </TableCell>
                           <TableCell>
                             {transaction.type === "EXPENSE" && (
-                              <span className="text-red-600 font-semibold">-{transaction.amount.toFixed(2)} FRCFA</span>
+                              <span className="text-red-600 font-semibold">-{transaction.amount.toFixed(2)}€</span>
                             )}
                           </TableCell>
                           <TableCell>
@@ -655,7 +630,7 @@ export default function TransactionHistory() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="edit-amount">Montant ( FRCFA)</Label>
+              <Label htmlFor="edit-amount">Montant (€)</Label>
               <Input
                 id="edit-amount"
                 type="number"
@@ -708,7 +683,10 @@ export default function TransactionHistory() {
             <Button variant="outline" onClick={() => setEditingTransaction(null)}>
               Annuler
             </Button>
-            <Button onClick={updateTransaction} className="gradient-bg border-0">
+            <Button
+              onClick={updateTransaction}
+              className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 border-0 text-white"
+            >
               Sauvegarder
             </Button>
           </DialogFooter>

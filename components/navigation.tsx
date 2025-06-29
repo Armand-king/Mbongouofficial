@@ -1,11 +1,11 @@
 "use client"
 
-import React from "react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Home, BarChart3, Plus, History, TrendingUp, Settings, Moon, Sun, LogOut, User } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useAuth } from "@/components/auth-provider"
+import Image from "next/image"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,7 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import Image from 'next/image';
+
 interface NavigationProps {
   currentPage: string
   onPageChange: (page: string) => void
@@ -49,17 +49,19 @@ export default function Navigation({ currentPage, onPageChange }: NavigationProp
     <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <div className="flex items-center space-x-2">
-           <div className="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
-  <Image
-    src="./../public/mbougou"
-    alt="Logo"
-    width={20}
-    height={20}
-    className="object-contain"
-  />
-</div>
-            <span className="font-bold text-xl">Mbongou.App</span>
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 rounded-lg overflow-hidden">
+              <Image
+                src="./mbongou.jpeg"
+                alt="MBONGOU ogo"
+                width={40}
+                height={40}
+                className="object-cover"
+              />
+            </div>
+            <span className="font-bold text-xl bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+              MBONGOU
+            </span>
           </div>
 
           <div className="hidden md:flex items-center space-x-1">

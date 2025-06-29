@@ -85,13 +85,14 @@ export function RealtimeProvider({ children }: { children: React.ReactNode }) {
             }
           },
         )
-        .subscribe((status) => {
+        .subscribe((status, err) => {
+          console.log("Realtime subscribe status:", status, err)
           if (status === "SUBSCRIBED") {
             setIsConnected(true)
             console.log("Connected to realtime transactions")
           } else if (status === "CHANNEL_ERROR") {
             setIsConnected(false)
-            console.error("Error connecting to realtime transactions")
+            console.error("Error connecting to realtime transactions", err)
           }
         })
 

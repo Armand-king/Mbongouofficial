@@ -1,7 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Wallet, TrendingUp } from "lucide-react"
+import { TrendingUp } from "lucide-react"
+import Image from "next/image"
 
 export default function SplashScreen() {
   const [progress, setProgress] = useState(0)
@@ -24,8 +25,14 @@ export default function SplashScreen() {
     <div className="min-h-screen flex items-center justify-center gradient-bg">
       <div className="text-center space-y-8 animate-fade-in">
         <div className="relative">
-          <div className="w-24 h-24 mx-auto bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30">
-            <Wallet className="w-12 h-12 text-white" />
+          <div className="w-32 h-32 mx-auto bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30 p-4">
+            <Image
+              src="./mbongou.jpeg"
+              alt="MBONGOU Logo"
+              width={96}
+              height={96}
+              className="rounded-full object-cover"
+            />
           </div>
           <div className="absolute -top-2 -right-2 w-8 h-8 bg-secondary rounded-full flex items-center justify-center">
             <TrendingUp className="w-4 h-4 text-white" />
@@ -33,7 +40,7 @@ export default function SplashScreen() {
         </div>
 
         <div className="space-y-4">
-          <h1 className="text-4xl font-bold text-white">Mbongou.App</h1>
+          <h1 className="text-4xl font-bold text-white">MBONGOU</h1>
           <p className="text-white/80 text-lg">Gérez votre budget intelligemment</p>
         </div>
 

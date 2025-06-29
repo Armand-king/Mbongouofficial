@@ -22,6 +22,7 @@ import { Settings, Palette, Trash2, Plus, Bell, Shield, Database, Edit, FileSpre
 import { useToast } from "@/hooks/use-toast"
 import { useTheme } from "next-themes"
 import { useAuth } from "@/components/auth-provider"
+import { exportTransactionsToExcel, exportBudgetsToExcel } from "@/lib/excel-export"
 
 interface Budget {
   id: string
@@ -283,7 +284,7 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
         const categoryName = categories.find((cat) => cat.id === newBudgetCategoryId)?.name
         toast({
           title: "Budget ajouté",
-          description: `Budget de ${newBudget} FRCFA défini pour ${categoryName}`,
+          description: `Budget de ${newBudget}€ défini pour ${categoryName}`,
         })
       } else {
         throw new Error("Failed to create budget")
@@ -360,43 +361,37 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
     }
   }
 
-  const exportToExcel = async () => {
+  const exportTransactionsData = async () => {
     try {
       const response = await fetch("/api/transactions")
       if (response.ok) {
         const transactions = await response.json()
-
-        const headers = ["Date", "Type", "Catégorie", "Montant", "Description"]
-        const csvContent = [
-          headers.join(","),
-          ...transactions.map((t: any) =>
-            [
-              t.date.split("T")[0],
-              t.type === "INCOME" ? "Revenu" : "Dépense",
-              t.category.name,
-              t.amount.toString(),
-              `"${t.description || ""}"`,
-            ].join(","),
-          ),
-        ].join("\n")
-
-        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" })
-        const url = window.URL.createObjectURL(blob)
-        const a = document.createElement("a")
-        a.href = url
-        a.download = `transactions_${new Date().toISOString().split("T")[0]}.csv`
-        a.click()
-        window.URL.revokeObjectURL(url)
-
+        const filename = exportTransactionsToExcel(transactions)
         toast({
           title: "Export réussi",
-          description: "Vos transactions ont été exportées au format CSV",
+          description: `Vos transactions ont été exportées vers ${filename}`,
         })
       }
     } catch (error) {
       toast({
         title: "Erreur",
         description: "Impossible d'exporter les données",
+        variant: "destructive",
+      })
+    }
+  }
+
+  const exportBudgetsData = async () => {
+    try {
+      const filename = exportBudgetsToExcel(budgets)
+      toast({
+        title: "Export réussi",
+        description: `Vos budgets ont été exportés vers ${filename}`,
+      })
+    } catch (error) {
+      toast({
+        title: "Erreur",
+        description: "Impossible d'exporter les budgets",
         variant: "destructive",
       })
     }
@@ -421,6 +416,9 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
       ].includes(cat.name),
   )
 
+  // Déduplique les budgets par id pour éviter les clés dupliquées dans le rendu
+  const uniqueBudgets = Array.from(new Map(budgets.map(b => [b.id, b])).values())
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center">
@@ -437,10 +435,10 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto space-y-8">
           <div className="text-center space-y-4">
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
               Paramètres
             </h1>
-            <p className="text-muted-foreground">Personnalisez votre expérience Mbongou.App</p>
+            <p className="text-muted-foreground">Personnalisez votre expérience MBONGOU</p>
           </div>
 
           <Card className="border-0 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
@@ -507,8 +505,14 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                       onChange={(e) => setNewCategory(e.target.value)}
                     />
                   </div>
+
+
+                  
                   <div className="flex items-end">
-                    <Button onClick={addCategory} className="w-full gradient-bg border-0">
+                    <Button
+                      onClick={addCategory}
+                      className="w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 border-0 text-white"
+                    >
                       <Plus className="h-4 w-4 mr-2" />
                       Ajouter
                     </Button>
@@ -571,7 +575,10 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                                       <Button variant="outline" onClick={() => setEditingCategory(null)}>
                                         Annuler
                                       </Button>
-                                      <Button onClick={updateCategory} className="gradient-bg border-0">
+                                      <Button
+                                        onClick={updateCategory}
+                                        className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 border-0 text-white"
+                                      >
                                         Sauvegarder
                                       </Button>
                                     </DialogFooter>
@@ -641,7 +648,10 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                                       <Button variant="outline" onClick={() => setEditingCategory(null)}>
                                         Annuler
                                       </Button>
-                                      <Button onClick={updateCategory} className="gradient-bg border-0">
+                                      <Button
+                                        onClick={updateCategory}
+                                        className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 border-0 text-white"
+                                      >
                                         Sauvegarder
                                       </Button>
                                     </DialogFooter>
@@ -696,18 +706,21 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                     </Select>
                   </div>
                   <div>
-                    <Label htmlFor="budgetAmount">Budget mensuel ( FRCFA)</Label>
+                    <Label htmlFor="budgetAmount">Budget mensuel (€)</Label>
                     <Input
                       id="budgetAmount"
                       type="number"
                       step="0.01"
-                      placeholder="Exemple: 120000 FRCFA"
+                      placeholder="0.00"
                       value={newBudget}
                       onChange={(e) => setNewBudget(e.target.value)}
                     />
                   </div>
                   <div className="flex items-end">
-                    <Button onClick={addBudget} className="w-full gradient-bg border-0">
+                    <Button
+                      onClick={addBudget}
+                      className="w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 border-0 text-white"
+                    >
                       <Plus className="h-4 w-4 mr-2" />
                       Ajouter
                     </Button>
@@ -719,17 +732,17 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
 
               <div className="space-y-4">
                 <h3 className="font-semibold">Budgets actuels</h3>
-                {budgets.length === 0 ? (
+                {uniqueBudgets.length === 0 ? (
                   <p className="text-muted-foreground text-center py-8">
                     Aucun budget défini. Ajoutez-en un pour commencer !
                   </p>
                 ) : (
                   <div className="space-y-3">
-                    {budgets.map((budget) => (
+                    {uniqueBudgets.map((budget) => (
                       <div key={budget.id} className="flex items-center justify-between p-4 border rounded-lg">
                         <div className="flex items-center space-x-4">
                           <Badge variant="secondary">{budget.category.name}</Badge>
-                          <span className="font-medium">{budget.limit} FRCFA/mois</span>
+                          <span className="font-medium">{budget.limit}€/mois</span>
                         </div>
                         <div className="flex items-center space-x-2">
                           <Dialog>
@@ -754,7 +767,7 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                               </DialogHeader>
                               <div className="space-y-4">
                                 <div>
-                                  <Label htmlFor="editBudgetAmount">Nouveau montant ( FRCFA)</Label>
+                                  <Label htmlFor="editBudgetAmount">Nouveau montant (€)</Label>
                                   <Input
                                     id="editBudgetAmount"
                                     type="number"
@@ -770,7 +783,7 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                                 </Button>
                                 <Button
                                   onClick={updateBudget}
-                                  className="gradient-bg border-0"
+                                  className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 border-0 text-white"
                                   disabled={!editBudgetAmount || editBudgetAmount === budget.limit.toString()}
                                 >
                                   Sauvegarder
@@ -827,17 +840,25 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                 <Database className="h-5 w-5" />
                 <span>Gestion des données</span>
               </CardTitle>
-              <CardDescription>Exportez vos données</CardDescription>
+              <CardDescription>Exportez vos données au format Excel</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid md:grid-cols-2 gap-4">
                 <Button
-                  onClick={exportToExcel}
+                  onClick={exportTransactionsData}
                   variant="outline"
-                  className="hover:scale-105 transition-transform bg-transparent"
+                  className="hover:scale-105 transition-transform bg-transparent border-green-600 text-green-600 hover:bg-green-50"
                 >
                   <FileSpreadsheet className="h-4 w-4 mr-2" />
-                  Exporter CSV
+                  Exporter Transactions Excel
+                </Button>
+                <Button
+                  onClick={exportBudgetsData}
+                  variant="outline"
+                  className="hover:scale-105 transition-transform bg-transparent border-blue-600 text-blue-600 hover:bg-blue-50"
+                >
+                  <FileSpreadsheet className="h-4 w-4 mr-2" />
+                  Exporter Budgets Excel
                 </Button>
               </div>
             </CardContent>
@@ -847,7 +868,7 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
             <Button
               onClick={saveSettings}
               size="lg"
-              className="gradient-bg border-0 hover:scale-105 transition-transform"
+              className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 border-0 text-white hover:scale-105 transition-transform"
             >
               <Shield className="h-4 w-4 mr-2" />
               Sauvegarder les paramètres
@@ -856,11 +877,11 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
 
           <Card className="border-0 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle>À propos de Mbongou.App</CardTitle>
+              <CardTitle>À propos de MBONGOU</CardTitle>
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground space-y-2">
               <p>Version 2.0.0</p>
-              <p>Application de gestion de budget personnel pour jeunes adultes et étudiants</p>
+              <p>Application de gestion de budget personnel moderne et intuitive</p>
               <p>Développée avec Next.js, React, Tailwind CSS, Supabase et Prisma</p>
               <p className="text-xs mt-4">
                 💡 Conseil : Vos données sont synchronisées en temps réel et sauvegardées de manière sécurisée

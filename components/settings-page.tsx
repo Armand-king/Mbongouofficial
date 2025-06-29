@@ -844,10 +844,13 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid md:grid-cols-2 gap-4">
-                <Button
+                    <Button
                   onClick={exportTransactionsData}
                   variant="outline"
-                  className="hover:scale-105 transition-transform bg-transparent border-green-600 text-green-600 hover:bg-green-50"
+                  className="hover:scale-105 transition-transform bg-transparent border-green-600 text-green-600 hover:bg-green-50 
+dark:hover:bg-green-900/20 
+dark:border-green-400
+ dark:text-green-400"
                 >
                   <FileSpreadsheet className="h-4 w-4 mr-2" />
                   Exporter Transactions Excel
@@ -855,7 +858,7 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                 <Button
                   onClick={exportBudgetsData}
                   variant="outline"
-                  className="hover:scale-105 transition-transform bg-transparent border-blue-600 text-blue-600 hover:bg-blue-50"
+                  className="hover:scale-105 transition-transform bg-transparent border-blue-600 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 dark:border-blue-400 dark:text-blue-400"
                 >
                   <FileSpreadsheet className="h-4 w-4 mr-2" />
                   Exporter Budgets Excel

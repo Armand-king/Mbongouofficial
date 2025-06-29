@@ -494,10 +494,10 @@ export default function TransactionHistory() {
 
               {/* Export button */}
               <div className="flex justify-start">
-                <Button
+                 <Button
                   onClick={exportToExcel}
                   variant="outline"
-                  className="hover:scale-105 transition-transform bg-transparent border-green-600 text-green-600 hover:bg-green-50"
+                  className="hover:scale-105 transition-transform bg-transparent border-green-600 text-green-600 hover:bg-green-50 dark:hover:bg-green-900/40 dark:border-green-400 dark:text-green-400 dark:focus:ring-green-700"
                 >
                   <FileSpreadsheet className="h-4 w-4 mr-2" />
                   Exporter Excel

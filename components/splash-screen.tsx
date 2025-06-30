@@ -28,7 +28,7 @@ export default function SplashScreen() {
         <div className="relative">
           <div className="w-32 h-32 mx-auto bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30 p-4">
             <Image
-              src="./ Mbongou.App.jpeg"
+              src="./mbongou.jpeg"
               alt=" Mbongou.App Logo"
               width={96}
               height={96}

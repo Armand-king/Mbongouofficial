@@ -6,10 +6,8 @@
    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "prisma seed": "prisma db seed",
-    "vercel-build": "next build && prisma generate && prisma migrate deploy && next build"
-       },
+    "lint": "next lint"
+        },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
     "@prisma/client": "^6.8.2",

@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
 
     // Create or update user
     const user = await prisma.user.upsert({
-      where: { id },
+      where: { email }, // upsert sur l'email, qui est unique
       update: { name },
       create: {
         id,

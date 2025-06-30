@@ -92,7 +92,21 @@ export function RealtimeProvider({ children }: { children: React.ReactNode }) {
             console.log("Connected to realtime transactions")
           } else if (status === "CHANNEL_ERROR") {
             setIsConnected(false)
-            console.error("Error connecting to realtime transactions", err)
+            if (err && Object.keys(err).length > 0) {
+              console.error(
+                "Erreur de connexion au canal realtime transactions :",
+                err,
+                JSON.stringify(err)
+              )
+            } else {
+              console.error(
+                "Erreur de connexion au canal realtime transactions : aucune erreur transmise"
+              )
+            }
+            // Pour le debug, loguer tout l'objet status/err
+            console.debug("Détail de l'événement d'erreur :", { status, err })
+            // Log du channel pour diagnostic avancé
+            console.debug("transactionsChannel :", transactionsChannel)
           }
         })
 

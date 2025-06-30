@@ -47,7 +47,7 @@ export default function SplashScreen() {
         <div className="w-64 mx-auto">
           <div className="w-full bg-white/20 rounded-full h-2 backdrop-blur-sm">
             <div
-              className="bg-white h-2 rounded-full transition-all duration-300 ease-out progress-bar"
+              className={`bg-white h-2 rounded-full transition-all duration-300 ease-out ${styles.progressBar}`}
               style={{ width: `${progress}%` }}
             />
           </div>

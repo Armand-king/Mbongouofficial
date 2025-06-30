@@ -335,7 +335,7 @@ export default function HowToPage({ onPageChange }: HowToPageProps) {
                   className="hover:scale-105 transition-transform"
                   onClick={() => onPageChange("settings")}
                 >
-                  Armand
+                  On y va en ensemble!
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
               </CardContent>

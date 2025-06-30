@@ -90,7 +90,7 @@ export default function HomePage() {
                       <div className="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                         <Link
                           href="#"
-                          className="btn btn-primary text-white px-6 py-3 rounded-xl shadow-md hover:scale-105 transition"
+                          className="px-6 py-3 rounded-xl shadow-md font-semibold bg-gradient-to-r from-green-600 to-blue-600 text-white hover:from-green-700 hover:to-blue-700 hover:scale-105 transition"
                           onClick={() => setCurrentPage("how-to")}
                         >
                           Commencer maintenant

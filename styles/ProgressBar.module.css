@@ -1,0 +1,17 @@
+.progressContainer {
+  background-color: #333;
+  border-radius: 9999px;
+  overflow: hidden;
+  height: 0.5rem;
+  width: 100%;
+}
+
+.progressBar {
+  background-color: white;
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.3s ease-out;
+
+  /* On définit la largeur en utilisant la variable CSS */
+  width: var(--progress-width);
+}

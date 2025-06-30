@@ -209,7 +209,7 @@ export default function Statistics() {
                 <TrendingUp className="h-4 w-4 text-blue-500" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-blue-600">{averageMonthlyIncome.toFixed(2)} FRCFA</div>
+                <div className="text-2xl font-bold text-blue-600">{averageMonthlyIncome.toFixed(2)}  Frcfa</div>
                 <p className="text-xs text-muted-foreground">Moyenne mensuelle</p>
               </CardContent>
             </Card>
@@ -220,7 +220,7 @@ export default function Statistics() {
                 <TrendingDown className="h-4 w-4 text-red-500" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-red-600">{averageMonthlyExpenses.toFixed(2)} FRCFA</div>
+                <div className="text-2xl font-bold text-red-600">{averageMonthlyExpenses.toFixed(2)}  Frcfa</div>
                 <p className="text-xs text-muted-foreground">Moyenne mensuelle</p>
               </CardContent>
             </Card>
@@ -232,7 +232,7 @@ export default function Statistics() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold text-orange-600">{monthWithMostExpenses.month}</div>
-                <p className="text-xs text-muted-foreground">{monthWithMostExpenses.dépenses.toFixed(2)} FRCFA dépensés</p>
+                <p className="text-xs text-muted-foreground">{monthWithMostExpenses.dépenses.toFixed(2)}  Frcfa dépensés</p>
               </CardContent>
             </Card>
           </div>
@@ -249,7 +249,7 @@ export default function Statistics() {
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
                   <YAxis />
-                  <Tooltip formatter={(value) => [`${value} FRCFA`, ""]} />
+                  <Tooltip formatter={(value) => [`${value}  Frcfa`, ""]} />
                   <Legend />
                   <Line type="monotone" dataKey="revenus" stroke="#10B981" strokeWidth={3} name="Revenus" />
                   <Line type="monotone" dataKey="dépenses" stroke="#EF4444" strokeWidth={3} name="Dépenses" />
@@ -274,7 +274,7 @@ export default function Statistics() {
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis type="number" />
                       <YAxis dataKey="category" type="category" width={80} />
-                      <Tooltip formatter={(value) => [`${value} FRCFA`, "Montant"]} />
+                      <Tooltip formatter={(value) => [`${value}  Frcfa`, "Montant"]} />
                       <Bar dataKey="amount" fill="#3B82F6" />
                     </BarChart>
                   </ResponsiveContainer>
@@ -304,7 +304,7 @@ export default function Statistics() {
                         cx="50%"
                         cy="50%"
                         labelLine={false}
-                        label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                        label={({ name, percent }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}
                         outerRadius={80}
                         fill="#8884d8"
                         dataKey="value"
@@ -313,7 +313,7 @@ export default function Statistics() {
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
-                      <Tooltip formatter={(value) => [`${value} FRCFA`, "Montant"]} />
+                      <Tooltip formatter={(value) => [`${value}  Frcfa`, "Montant"]} />
                     </PieChart>
                   </ResponsiveContainer>
                 ) : (

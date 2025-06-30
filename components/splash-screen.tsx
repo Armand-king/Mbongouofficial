@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { TrendingUp } from "lucide-react"
 import Image from "next/image"
-import styles from "./splash-screen.module.css"
+import styles from "@/styles/ProgressBar.module.css"
 
 export default function SplashScreen() {
   const [progress, setProgress] = useState(0)
@@ -41,18 +41,21 @@ export default function SplashScreen() {
         </div>
 
         <div className="space-y-4">
-          <h1 className="text-4xl font-bold text-white">MBONGOU</h1>
+          <h1 className="text-4xl font-bold text-white">Mbongou.App</h1>
           <p className="text-white/80 text-lg">Gérez votre budget intelligemment</p>
         </div>
         <div className="w-64 mx-auto">
-          <div className="w-full bg-white/20 rounded-full h-2 backdrop-blur-sm">
-            <div
-              className={`bg-white h-2 rounded-full transition-all duration-300 ease-out ${styles.progressBar}`}
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-          <p className="text-white/60 text-sm mt-2">{progress}%</p>
-        </div>
+      <div className={styles.progressContainer}>
+        <div
+          className={styles.progressBar}
+
+          // Ici tu passes la variable CSS personnalisée --progress-width en React
+          // Elle sera injectée dans la classe .progressBar qui l'utilise dans width: var(--progress-width);
+          style={{ '--progress-width': `${progress}%` } as React.CSSProperties}
+      suppressHydrationWarning  />
+      </div>
+      <p className="text-white/60 text-sm mt-2">{progress}%</p>
+    </div>
         </div>
       </div>
   )

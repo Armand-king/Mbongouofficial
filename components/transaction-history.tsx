@@ -317,7 +317,7 @@ export default function TransactionHistory() {
                 <Plus className="h-4 w-4 text-green-500" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-green-600">+{totalIncome.toFixed(2)}€</div>
+                <div className="text-2xl font-bold text-green-600">+{totalIncome.toFixed(2)} Frcfa</div>
                 <p className="text-xs text-muted-foreground">
                   {filteredTransactions.filter((t) => t.type === "INCOME").length} transactions
                 </p>
@@ -330,7 +330,7 @@ export default function TransactionHistory() {
                 <Minus className="h-4 w-4 text-red-500" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-red-600">-{totalExpenses.toFixed(2)}€</div>
+                <div className="text-2xl font-bold text-red-600">-{totalExpenses.toFixed(2)} Frcfa</div>
                 <p className="text-xs text-muted-foreground">
                   {filteredTransactions.filter((t) => t.type === "EXPENSE").length} transactions
                 </p>
@@ -347,7 +347,7 @@ export default function TransactionHistory() {
                   className={`text-2xl font-bold ${(totalIncome - totalExpenses) >= 0 ? "text-green-600" : "text-red-600"}`}
                 >
                   {totalIncome - totalExpenses >= 0 ? "+" : ""}
-                  {(totalIncome - totalExpenses).toFixed(2)}€
+                  {(totalIncome - totalExpenses).toFixed(2)} Frcfa
                 </div>
                 <p className="text-xs text-muted-foreground">{filteredTransactions.length} transactions au total</p>
               </CardContent>
@@ -545,12 +545,12 @@ export default function TransactionHistory() {
                           </TableCell>
                           <TableCell>
                             {transaction.type === "INCOME" && (
-                              <span className="text-green-600 font-semibold">+{transaction.amount.toFixed(2)}€</span>
+                              <span className="text-green-600 font-semibold">+{transaction.amount.toFixed(2)} Frcfa</span>
                             )}
                           </TableCell>
                           <TableCell>
                             {transaction.type === "EXPENSE" && (
-                              <span className="text-red-600 font-semibold">-{transaction.amount.toFixed(2)}€</span>
+                              <span className="text-red-600 font-semibold">-{transaction.amount.toFixed(2)} Frcfa</span>
                             )}
                           </TableCell>
                           <TableCell>
@@ -630,7 +630,7 @@ export default function TransactionHistory() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="edit-amount">Montant (€)</Label>
+              <Label htmlFor="edit-amount">Montant ( Frcfa)</Label>
               <Input
                 id="edit-amount"
                 type="number"

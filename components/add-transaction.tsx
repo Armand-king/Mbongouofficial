@@ -96,7 +96,7 @@ export default function AddTransaction({ onBack, onTransactionAdded }: AddTransa
       if (response.ok) {
         toast({
           title: "Transaction ajoutée !",
-          description: `${type === "income" ? "Revenu" : "Dépense"} de ${amount} FRCFA enregistré(e)`,
+          description: `${type === "income" ? "Revenu" : "Dépense"} de ${amount}  Frcfa enregistré(e)`,
         })
 
         // Reset form
@@ -189,12 +189,12 @@ export default function AddTransaction({ onBack, onTransactionAdded }: AddTransa
 
                 {/* Montant */}
                 <div className="space-y-2">
-                  <Label htmlFor="amount">Montant ( FRCFA) *</Label>
+                  <Label htmlFor="amount">Montant (  Frcfa) *</Label>
                   <Input
                     id="amount"
                     type="number"
                     step="0.01"
-                    placeholder="Exemple: 120000 FRCFA"
+                    placeholder="Exemple: 120000  Frcfa"
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
                     className="text-lg"

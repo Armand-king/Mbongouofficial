@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Mbongou.App - Gestion de Budget Personnel",
   description: "Application moderne de gestion de budget pour jeunes adultes et étudiants",
-    generator: 'v0.dev'
+    generator: 'dev'
 }
 
 export default function RootLayout({

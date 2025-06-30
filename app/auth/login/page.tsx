@@ -65,7 +65,7 @@ export default function LoginPage() {
             <Image src="../mbongou" alt="MBO" width={80} height={80} className="object-cover" />
           </div>
           <h1 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-            MBONGOU
+            Mbongou.App
           </h1>
           <p className="text-muted-foreground">Connectez-vous à votre compte</p>
         </div>

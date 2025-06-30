@@ -172,7 +172,7 @@ export default function Dashboard() {
                 <TrendingUp className="h-4 w-4 text-green-500" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-green-600">+{totalIncome.toFixed(2)} FRCFA</div>
+                <div className="text-2xl font-bold text-green-600">+{totalIncome.toFixed(2)}  Frcfa</div>
                 <p className="text-xs text-muted-foreground">Ce mois-ci</p>
               </CardContent>
             </Card>
@@ -183,7 +183,7 @@ export default function Dashboard() {
                 <TrendingDown className="h-4 w-4 text-red-500" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-red-600">-{totalExpenses.toFixed(2)} FRCFA</div>
+                <div className="text-2xl font-bold text-red-600">-{totalExpenses.toFixed(2)}  Frcfa</div>
                 <p className="text-xs text-muted-foreground">Ce mois-ci</p>
               </CardContent>
             </Card>
@@ -196,7 +196,7 @@ export default function Dashboard() {
               <CardContent>
                 <div className={`text-2xl font-bold ${balance >= 0 ? "text-green-600" : "text-red-600"}`}>
                   {balance >= 0 ? "+" : ""}
-                  {balance.toFixed(2)} FRCFA
+                  {balance.toFixed(2)}  Frcfa
                 </div>
                 <p className="text-xs text-muted-foreground">Solde actuel</p>
               </CardContent>
@@ -227,7 +227,7 @@ export default function Dashboard() {
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
-                      <Tooltip formatter={(value) => [`${value} FRCFA`, "Montant"]} />
+                      <Tooltip formatter={(value) => [`${value}  Frcfa`, "Montant"]} />
                     </PieChart>
                   </ResponsiveContainer>
                 ) : (
@@ -267,7 +267,7 @@ export default function Dashboard() {
                           <div className="flex items-center space-x-2">
                             {isOverBudget && <AlertTriangle className="h-4 w-4 text-red-500" />}
                             <span className={`text-sm ${isOverBudget ? "text-red-600" : "text-muted-foreground"}`}>
-                              {budget.spent.toFixed(2)} FRCFA / {budget.limit} FRCFA
+                              {budget.spent.toFixed(2)}  Frcfa / {budget.limit}  Frcfa
                             </span>
                           </div>
                         </div>
@@ -277,7 +277,7 @@ export default function Dashboard() {
                         />
                         {isOverBudget && (
                           <p className="text-xs text-red-600">
-                            Dépassement de {(budget.spent - budget.limit).toFixed(2)} FRCFA
+                            Dépassement de {(budget.spent - budget.limit).toFixed(2)}  Frcfa
                           </p>
                         )}
                       </div>

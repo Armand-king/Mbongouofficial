@@ -8,6 +8,7 @@ body {
 
 @layer utilities {
   .text-balance {
+    text-wrap: wrap;
     text-wrap: balance;
   }
 }

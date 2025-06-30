@@ -286,7 +286,7 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
         const categoryName = categories.find((cat) => cat.id === newBudgetCategoryId)?.name
         toast({
           title: "Budget ajouté",
-          description: `Budget de ${newBudget}€ défini pour ${categoryName}`,
+          description: `Budget de ${newBudget} Frcfa défini pour ${categoryName}`,
         })
       } else {
         throw new Error("Failed to create budget")
@@ -440,7 +440,7 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
             <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
               Paramètres
             </h1>
-            <p className="text-muted-foreground">Personnalisez votre expérience MBONGOU</p>
+            <p className="text-muted-foreground">Personnalisez votre expérience Mbongou.App</p>
           </div>
 
           <Card className="border-0 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
@@ -710,7 +710,7 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                     </Select>
                   </div>
                   <div>
-                    <Label htmlFor="budgetAmount">Budget mensuel (€)</Label>
+                    <Label htmlFor="budgetAmount">Budget mensuel ( Frcfa)</Label>
                     <Input
                       id="budgetAmount"
                       type="number"
@@ -746,7 +746,7 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                       <div key={budget.id} className="flex items-center justify-between p-4 border rounded-lg">
                         <div className="flex items-center space-x-4">
                           <Badge variant="secondary">{budget.category.name}</Badge>
-                          <span className="font-medium">{budget.limit}€/mois</span>
+                          <span className="font-medium">{budget.limit} Frcfa/mois</span>
                         </div>
                         <div className="flex items-center space-x-2">
                           <Dialog open={isEditBudgetDialogOpen} onOpenChange={setIsEditBudgetDialogOpen}>
@@ -772,7 +772,7 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                               </DialogHeader>
                               <div className="space-y-4">
                                 <div>
-                                  <Label htmlFor="editBudgetAmount">Nouveau montant (€)</Label>
+                                  <Label htmlFor="editBudgetAmount">Nouveau montant ( Frcfa)</Label>
                                   <Input
                                     id="editBudgetAmount"
                                     type="number"

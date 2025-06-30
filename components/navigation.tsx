@@ -60,7 +60,7 @@ export default function Navigation({ currentPage, onPageChange }: NavigationProp
               />
             </div>
             <span className="font-bold text-xl bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-              MBONGOU
+              Mbongou.App
             </span>
           </div>
 

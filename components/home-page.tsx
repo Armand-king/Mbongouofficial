@@ -70,7 +70,7 @@ export default function HomePage() {
                     </div>
                   </div>
                   <h1 className="text-5xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-                    MBONGOU
+                    Mbongou.App
                   </h1>
                   <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                     L'application moderne qui vous aide à gérer votre budget personnel avec intelligence et simplicité
@@ -169,9 +169,9 @@ export default function HomePage() {
               <div className="text-center">
                 <Card className="max-w-2xl mx-auto border-0 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
                   <CardHeader>
-                    <CardTitle className="text-2xl">Prêt à commencer ?</CardTitle>
+                    <CardTitle className="text-2xl">✨ Prenez le contrôle en un clic !</CardTitle>
                     <CardDescription>
-🌟 Ils ont choisi MBONGOU pour reprendre le contrôle de leurs finances. Faites comme eux !
+🌟 Sur cette plateforme, tout est à portée de main : 📊 suivez vos activités sur le Dashboard, 📜 retrouvez vos actions passées grâce à l’Historique et ⚙️ personnalisez votre expérience dans les Paramètres. 💡 Une interface claire, fluide et pensée pour vous simplifier la vie !!!!
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">

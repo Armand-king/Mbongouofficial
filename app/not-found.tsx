@@ -23,7 +23,7 @@ export default function NotFoundPage() {
             Oups !
           </h1>
           <p className="text-muted-foreground">
-            La page que vous recherchez est introuvable.
+        Désolé chers utilisateurs la page que vous recherchez est introuvable.
           </p>
         </div>
 

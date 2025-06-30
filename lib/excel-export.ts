@@ -20,7 +20,7 @@ export function exportTransactionsToExcel(transactions: Transaction[], filename?
     Date: new Date(transaction.date).toLocaleDateString("fr-FR"),
     Type: transaction.type === "INCOME" ? "Revenu" : "Dépense",
     Catégorie: transaction.category.name,
-    "Montant (€)": transaction.amount,
+    "Montant ( Frcfa)": transaction.amount,
     Description: transaction.description || "",
   }))
 
@@ -65,12 +65,12 @@ export function exportTransactionsToExcel(transactions: Transaction[], filename?
   const totalExpenses = transactions.filter((t) => t.type === "EXPENSE").reduce((sum, t) => sum + t.amount, 0)
 
   const summaryData = [
-    { Résumé: "Total Revenus", "Montant (€)": totalIncome },
-    { Résumé: "Total Dépenses", "Montant (€)": totalExpenses },
-    { Résumé: "Solde", "Montant (€)": totalIncome - totalExpenses },
-    { Résumé: "", "Montant (€)": "" },
-    { Résumé: "Nombre de transactions", "Montant (€)": transactions.length },
-    { Résumé: "Période", "Montant (€)": `${new Date().toLocaleDateString("fr-FR")}` },
+    { Résumé: "Total Revenus", "Montant ( Frcfa)": totalIncome },
+    { Résumé: "Total Dépenses", "Montant ( Frcfa)": totalExpenses },
+    { Résumé: "Solde", "Montant ( Frcfa)": totalIncome - totalExpenses },
+    { Résumé: "", "Montant ( Frcfa)": "" },
+    { Résumé: "Nombre de transactions", "Montant ( Frcfa)": transactions.length },
+    { Résumé: "Période", "Montant ( Frcfa)": `${new Date().toLocaleDateString("fr-FR")}` },
   ]
 
   const summaryWorksheet = XLSX.utils.json_to_sheet(summaryData)
@@ -91,9 +91,9 @@ export function exportBudgetsToExcel(budgets: any[], filename?: string) {
   const excelData = budgets.map((budget, index) => ({
     "N°": index + 1,
     Catégorie: budget.category.name,
-    "Budget (€)": budget.limit,
-    "Dépensé (€)": budget.spent,
-    "Restant (€)": budget.limit - budget.spent,
+    "Budget ( Frcfa)": budget.limit,
+    "Dépensé ( Frcfa)": budget.spent,
+    "Restant ( Frcfa)": budget.limit - budget.spent,
     "Pourcentage utilisé": `${((budget.spent / budget.limit) * 100).toFixed(1)}%`,
     Statut: budget.spent > budget.limit ? "Dépassé" : "Dans les limites",
   }))

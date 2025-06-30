@@ -12,7 +12,7 @@ export default function NotFoundPage() {
         <div className="text-center space-y-4">
           <div className="w-20 h-20 mx-auto rounded-full overflow-hidden shadow-lg">
             <Image
-              src="/ Mbongou.App.jpeg"
+              src="./mbongou.jpeg"
               alt=" Mbongou.App Logo"
               width={80}
               height={80}

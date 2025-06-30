@@ -47,11 +47,16 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
 
     const { id } = await params
 
+    // Vérifier l'existence de la catégorie avant suppression
+    const category = await prisma.category.findUnique({
+      where: { id, userId: user.id },
+    })
+    if (!category) {
+      return NextResponse.json({ error: "Catégorie non trouvée" }, { status: 404 })
+    }
+
     await prisma.category.delete({
-      where: {
-        id,
-        userId: user.id,
-      },
+      where: { id, userId: user.id },
     })
 
     return NextResponse.json({ success: true })

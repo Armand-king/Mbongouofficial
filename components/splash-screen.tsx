@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { TrendingUp } from "lucide-react"
 import Image from "next/image"
+import styles from "./splash-screen.module.css"
 
 export default function SplashScreen() {
   const [progress, setProgress] = useState(0)
@@ -43,17 +44,16 @@ export default function SplashScreen() {
           <h1 className="text-4xl font-bold text-white">MBONGOU</h1>
           <p className="text-white/80 text-lg">Gérez votre budget intelligemment</p>
         </div>
-
         <div className="w-64 mx-auto">
           <div className="w-full bg-white/20 rounded-full h-2 backdrop-blur-sm">
             <div
-              className="bg-white h-2 rounded-full transition-all duration-300 ease-out"
+              className="bg-white h-2 rounded-full transition-all duration-300 ease-out progress-bar"
               style={{ width: `${progress}%` }}
             />
           </div>
           <p className="text-white/60 text-sm mt-2">{progress}%</p>
         </div>
+        </div>
       </div>
-    </div>
   )
 }

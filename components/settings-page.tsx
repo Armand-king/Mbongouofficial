@@ -72,6 +72,8 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
   const { theme, setTheme } = useTheme()
   const { toast } = useToast()
   const { user } = useAuth()
+  const [isEditCategoryDialogOpen, setIsEditCategoryDialogOpen] = useState(false)
+  const [isEditBudgetDialogOpen, setIsEditBudgetDialogOpen] = useState(false)
 
   useEffect(() => {
     if (user) {
@@ -236,7 +238,7 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
         setCategories(categories.map((cat) => (cat.id === editingCategory.id ? updatedCategory : cat)))
         setEditingCategory(null)
         setEditCategoryName("")
-
+        setIsEditCategoryDialogOpen(false)
         toast({
           title: "Catégorie modifiée",
           description: `La catégorie a été renommée en "${editCategoryName.trim()}"`,
@@ -317,7 +319,7 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
         setBudgets(budgets.map((budget) => (budget.id === editingBudget.id ? updatedBudget : budget)))
         setEditingBudget(null)
         setEditBudgetAmount("")
-
+        setIsEditBudgetDialogOpen(false)
         toast({
           title: "Budget modifié",
           description: `Budget pour ${editingBudget.category.name} mis à jour`,
@@ -540,7 +542,7 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                             >
                               <Badge variant="destructive">{category.name}</Badge>
                               <div className="flex items-center space-x-2">
-                                <Dialog>
+                                <Dialog open={isEditCategoryDialogOpen} onOpenChange={setIsEditCategoryDialogOpen}>
                                   <DialogTrigger asChild>
                                     <Button
                                       variant="ghost"
@@ -548,6 +550,7 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                                       onClick={() => {
                                         setEditingCategory(category)
                                         setEditCategoryName(category.name)
+                                        setIsEditCategoryDialogOpen(true)
                                       }}
                                       className="h-8 w-8 text-blue-500 hover:text-blue-700"
                                     >
@@ -613,7 +616,7 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                             >
                               <Badge variant="secondary">{category.name}</Badge>
                               <div className="flex items-center space-x-2">
-                                <Dialog>
+                                <Dialog open={isEditCategoryDialogOpen} onOpenChange={setIsEditCategoryDialogOpen}>
                                   <DialogTrigger asChild>
                                     <Button
                                       variant="ghost"
@@ -621,6 +624,7 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                                       onClick={() => {
                                         setEditingCategory(category)
                                         setEditCategoryName(category.name)
+                                        setIsEditCategoryDialogOpen(true)
                                       }}
                                       className="h-8 w-8 text-blue-500 hover:text-blue-700"
                                     >
@@ -745,7 +749,7 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                           <span className="font-medium">{budget.limit}€/mois</span>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <Dialog>
+                          <Dialog open={isEditBudgetDialogOpen} onOpenChange={setIsEditBudgetDialogOpen}>
                             <DialogTrigger asChild>
                               <Button
                                 variant="ghost"
@@ -753,6 +757,7 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                                 onClick={() => {
                                   setEditingBudget(budget)
                                   setEditBudgetAmount(budget.limit.toString())
+                                  setIsEditBudgetDialogOpen(true)
                                 }}
                               >
                                 <Edit className="h-4 w-4" />

@@ -11,6 +11,8 @@ import AddTransaction from "@/components/add-transaction"
 import TransactionHistory from "@/components/transaction-history"
 import Statistics from "@/components/statistics"
 import SettingsPage from "@/components/settings-page"
+import Link from "next/link"
+import ImageCarousel from "../components/ImageCarousel"
 
 export default function HomePage() {
   const [currentPage, setCurrentPage] = useState("home")
@@ -38,7 +40,11 @@ export default function HomePage() {
         return <Dashboard key="dashboard" />
       case "add":
         return (
-          <AddTransaction key="add" onBack={() => setCurrentPage("home")} onTransactionAdded={handleTransactionAdded} />
+          <AddTransaction
+            key="add"
+            onBack={() => setCurrentPage("home")}
+            onTransactionAdded={handleTransactionAdded}
+          />
         )
       case "history":
         return <TransactionHistory key="history" />
@@ -56,7 +62,7 @@ export default function HomePage() {
                     <div className="w-24 h-24 rounded-full overflow-hidden shadow-lg">
                       <Image
                         src="./mbongou.jpeg"
-                        alt="MBONGOU "
+                        alt="MBONGOU"
                         width={96}
                         height={96}
                         className="object-cover"
@@ -71,6 +77,32 @@ export default function HomePage() {
                   </p>
                 </div>
 
+                {/* Hero Section corrigée */}
+                <section className="relative w-full bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-24 px-4 md:px-8 lg:px-16 overflow-hidden">
+                  <div className="relative z-10 max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between">
+                    <div className="w-full lg:w-1/2 text-center lg:text-left">
+                      <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 dark:text-white leading-tight">
+                        Prenez le contrôle <br className="hidden md:block" /> de votre budget sans effort. 😉
+                      </h1>
+                      <p className="mt-6 text-gray-600 dark:text-gray-300 text-lg md:text-xl">
+                        Avec <strong>Mbongou.App</strong>, vous suivez vos revenus, gérez vos dépenses et atteignez vos objectifs d’épargne — tout ça dans une interface claire, intuitive et 100% sécurisée.
+                      </p>
+
+                      <div className="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <Link
+                          href="/budgets"
+                          className="btn btn-primary text-white px-6 py-3 rounded-xl shadow-md hover:scale-105 transition"
+                        >
+                          Commencer maintenant
+                        </Link>
+                      </div>
+                    </div>
+                    <div className="w-full lg:w-1/2 flex justify-center mb-12 lg:mb-0">
+                      <ImageCarousel />
+                    </div>
+                  </div>
+                </section>
+
                 <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
                   <Button
                     size="lg"
@@ -80,7 +112,7 @@ export default function HomePage() {
                     <Plus className="mr-2 h-5 w-5" />
                     Ajouter une transaction
                   </Button>
-                 <Button
+                  <Button
                     size="lg"
                     variant="outline"
                     className="text-lg px-8 py-6 hover:scale-105 transition-transform bg-transparent border-green-600 text-green-600 hover:bg-green-50 dark:hover:bg-green-900/20 dark:border-green-400 dark:text-green-400"
@@ -139,14 +171,14 @@ export default function HomePage() {
                   <CardHeader>
                     <CardTitle className="text-2xl">Prêt à commencer ?</CardTitle>
                     <CardDescription>
-                      Rejoignez des milliers d'utilisateurs qui gèrent déjà leur budget avec MBONGOU
+🌟 Ils ont choisi MBONGOU pour reprendre le contrôle de leurs finances. Faites comme eux !
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="grid sm:grid-cols-3 gap-4">
                       <Button
                         variant="outline"
-                        className="hover:scale-105 transition-transform bg-transparent border-green-600 text-green-600 hover:bg-green-50"
+                        className="hover:scale-105 transition-transform bg-transparent border-green-600 text-green-600 hover:bg-green-50 dark:hover:bg-green-900/20 dark:border-green-400 dark:text-green-400"
                         onClick={() => setCurrentPage("dashboard")}
                       >
                         <BarChart3 className="mr-2 h-4 w-4" />
@@ -154,7 +186,7 @@ export default function HomePage() {
                       </Button>
                       <Button
                         variant="outline"
-                        className="hover:scale-105 transition-transform bg-transparent border-blue-600 text-blue-600 hover:bg-blue-50"
+                        className="hover:scale-105 transition-transform bg-transparent border-blue-600 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 dark:border-blue-400 dark:text-blue-400"
                         onClick={() => setCurrentPage("history")}
                       >
                         <History className="mr-2 h-4 w-4" />
@@ -162,7 +194,7 @@ export default function HomePage() {
                       </Button>
                       <Button
                         variant="outline"
-                        className="hover:scale-105 transition-transform bg-transparent border-purple-600 text-purple-600 hover:bg-purple-50"
+                        className="hover:scale-105 transition-transform bg-transparent border-purple-600 text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/20 dark:border-purple-400 dark:text-purple-400"
                         onClick={() => setCurrentPage("settings")}
                       >
                         <Settings className="mr-2 h-4 w-4" />

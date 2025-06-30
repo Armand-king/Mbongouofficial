@@ -11,9 +11,9 @@ import AddTransaction from "@/components/add-transaction"
 import TransactionHistory from "@/components/transaction-history"
 import Statistics from "@/components/statistics"
 import SettingsPage from "@/components/settings-page"
-import Link from "next/link"
+import HowToPage from "@/components/how-to-page"
 import ImageCarousel from "../components/ImageCarousel"
-
+import Link from "next/link"
 export default function HomePage() {
   const [currentPage, setCurrentPage] = useState("home")
   const [mounted, setMounted] = useState(false)
@@ -40,42 +40,41 @@ export default function HomePage() {
         return <Dashboard key="dashboard" />
       case "add":
         return (
-          <AddTransaction
-            key="add"
-            onBack={() => setCurrentPage("home")}
-            onTransactionAdded={handleTransactionAdded}
-          />
+          <AddTransaction key="add" onBack={() => setCurrentPage("home")} onTransactionAdded={handleTransactionAdded} />
         )
       case "history":
         return <TransactionHistory key="history" />
       case "statistics":
         return <Statistics key="statistics" />
+      case "how-to":
+        return <HowToPage key="how-to" onPageChange={handlePageChange} />
       case "settings":
         return <SettingsPage key="settings" onNavigate={handlePageChange} />
       default:
         return (
           <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
             <div className="container mx-auto px-4 py-8">
-              <div className="text-center space-y-8 mb-12">
-                <div className="space-y-6 animate-fade-in">
+              <div className="text-center space-y-6 mb-12">
+                <div className="space-y-9 animate-fade-in">
                   <div className="flex justify-center">
-                    <div className="w-24 h-24 rounded-full overflow-hidden shadow-lg">
+                    <div className="w-30 h-30 rounded-full overflow-hidden shadow-lg">
                       <Image
                         src="./mbongou.jpeg"
-                        alt="MBONGOU"
+                        alt=" Mbongou.App Logo"
                         width={96}
                         height={96}
                         className="object-cover"
                       />
                     </div>
                   </div>
-                  <h1 className="text-5xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-                    Mbongou.App
+                  <h1 className="text-6xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+                      Mbongou.App
                   </h1>
                   <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                     L'application moderne qui vous aide à gérer votre budget personnel avec intelligence et simplicité
                   </p>
                 </div>
+
 
                 {/* Hero Section corrigée */}
                 <section className="relative w-full bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-24 px-4 md:px-8 lg:px-16 overflow-hidden">
@@ -85,16 +84,18 @@ export default function HomePage() {
                         Prenez le contrôle <br className="hidden md:block" /> de votre budget sans effort. 😉
                       </h1>
                       <p className="mt-6 text-gray-600 dark:text-gray-300 text-lg md:text-xl">
-                        Avec <strong>Mbongou.App</strong>, vous suivez vos revenus, gérez vos dépenses et atteignez vos objectifs d’épargne — tout ça dans une interface claire, intuitive et 100% sécurisée.
+                        Avec <strong> Mbongou.App</strong>, vous suivez vos revenus, gérez vos dépenses et atteignez vos objectifs d’épargne — tout ça dans une interface claire, intuitive et 100% sécurisée.
                       </p>
 
                       <div className="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                         <Link
-                          href="/budgets"
+                          href="#"
                           className="btn btn-primary text-white px-6 py-3 rounded-xl shadow-md hover:scale-105 transition"
+                          onClick={() => setCurrentPage("how-to")}
                         >
                           Commencer maintenant
                         </Link>
+
                       </div>
                     </div>
                     <div className="w-full lg:w-1/2 flex justify-center mb-12 lg:mb-0">
@@ -169,10 +170,10 @@ export default function HomePage() {
               <div className="text-center">
                 <Card className="max-w-2xl mx-auto border-0 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
                   <CardHeader>
-                    <CardTitle className="text-2xl">✨ Prenez le contrôle en un clic !</CardTitle>
+                    <CardTitle className="text-2xl">Prêt à commencer ?</CardTitle>
                     <CardDescription>
-🌟 Sur cette plateforme, tout est à portée de main : 📊 suivez vos activités sur le Dashboard, 📜 retrouvez vos actions passées grâce à l’Historique et ⚙️ personnalisez votre expérience dans les Paramètres. 💡 Une interface claire, fluide et pensée pour vous simplifier la vie !!!!
-                    </CardDescription>
+             🌟 Sur cette plateforme, tout est à portée de main : 📊 suivez vos activités sur le Dashboard, 📜 retrouvez vos actions passées grâce à l’Historique et ⚙️ personnalisez votre expérience dans les Paramètres. 💡 Une interface claire, fluide et pensée pour vous simplifier la vie !!!!
+         </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="grid sm:grid-cols-3 gap-4">

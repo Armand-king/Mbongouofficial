@@ -90,10 +90,10 @@ export default function RegisterPage() {
       <div className="w-full max-w-md space-y-8">
         <div className="text-center space-y-4">
           <div className="w-20 h-20 mx-auto rounded-full overflow-hidden shadow-lg">
-            <Image src="/mbongou.jpeg" alt="MBONGOU Logo" width={80} height={80} className="object-cover" />
+            <Image src="/mbongou.jpeg" alt=" Mbongou.App Logo" width={80} height={80} className="object-cover" />
           </div>
           <h1 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-            Mbongou.App
+             Mbongou.App
           </h1>
           <p className="text-muted-foreground">Créez votre compte</p>
         </div>

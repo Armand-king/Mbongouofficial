@@ -11,7 +11,7 @@ import { ErrorBoundary } from "@/components/error-boundary"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Mbongou.App - Gestion de Budget Personnel",
+  title: " Mbongou.App - Gestion de Budget Personnel",
   description: "Application moderne de gestion de budget pour jeunes adultes et étudiants",
     generator: 'dev'
 }

@@ -440,7 +440,7 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
             <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
               Paramètres
             </h1>
-            <p className="text-muted-foreground">Personnalisez votre expérience Mbongou.App</p>
+            <p className="text-muted-foreground">Personnalisez votre expérience  Mbongou.App</p>
           </div>
 
           <Card className="border-0 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
@@ -885,7 +885,7 @@ dark:border-green-400
 
           <Card className="border-0 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle>À propos de MBONGOU</CardTitle>
+              <CardTitle>À propos de  Mbongou.App</CardTitle>
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground space-y-2">
               <p>Version 2.0.0</p>

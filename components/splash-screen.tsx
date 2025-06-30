@@ -28,8 +28,8 @@ export default function SplashScreen() {
         <div className="relative">
           <div className="w-32 h-32 mx-auto bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30 p-4">
             <Image
-              src="./mbongou.jpeg"
-              alt="MBONGOU Logo"
+              src="./ Mbongou.App.jpeg"
+              alt=" Mbongou.App Logo"
               width={96}
               height={96}
               className="rounded-full object-cover"
@@ -41,7 +41,7 @@ export default function SplashScreen() {
         </div>
 
         <div className="space-y-4">
-          <h1 className="text-4xl font-bold text-white">Mbongou.App</h1>
+          <h1 className="text-4xl font-bold text-white"> Mbongou.App</h1>
           <p className="text-white/80 text-lg">Gérez votre budget intelligemment</p>
         </div>
         <div className="w-64 mx-auto">

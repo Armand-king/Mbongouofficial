@@ -78,7 +78,7 @@ export function exportTransactionsToExcel(transactions: Transaction[], filename?
   XLSX.utils.book_append_sheet(workbook, summaryWorksheet, "Résumé")
 
   // Générer le nom de fichier
-  const defaultFilename = `transactions_mbongou_${new Date().toISOString().split("T")[0]}.xlsx`
+  const defaultFilename = `transactions_ Mbongou.App_${new Date().toISOString().split("T")[0]}.xlsx`
   const finalFilename = filename || defaultFilename
 
   // Télécharger le fichier
@@ -113,7 +113,7 @@ export function exportBudgetsToExcel(budgets: any[], filename?: string) {
 
   XLSX.utils.book_append_sheet(workbook, worksheet, "Budgets")
 
-  const defaultFilename = `budgets_mbongou_${new Date().toISOString().split("T")[0]}.xlsx`
+  const defaultFilename = `budgets_ Mbongou.App_${new Date().toISOString().split("T")[0]}.xlsx`
   const finalFilename = filename || defaultFilename
 
   XLSX.writeFile(workbook, finalFilename)

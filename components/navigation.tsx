@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Home, BarChart3, Plus, History, TrendingUp, Settings, Moon, Sun, LogOut, User } from "lucide-react"
+import { Home, BarChart3, Plus, History, TrendingUp, Settings, Moon, Sun, LogOut, User, HelpCircle } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useAuth } from "@/components/auth-provider"
 import Image from "next/image"
@@ -34,6 +34,7 @@ export default function Navigation({ currentPage, onPageChange }: NavigationProp
     { id: "add", label: "Ajouter", icon: Plus },
     { id: "history", label: "Historique", icon: History },
     { id: "statistics", label: "Stats", icon: TrendingUp },
+    { id: "how-to", label: "Comment ?", icon: HelpCircle },
     { id: "settings", label: "Paramètres", icon: Settings },
   ]
 
@@ -53,14 +54,14 @@ export default function Navigation({ currentPage, onPageChange }: NavigationProp
             <div className="w-10 h-10 rounded-lg overflow-hidden">
               <Image
                 src="./mbongou.jpeg"
-                alt="MBONGOU ogo"
+                alt=" Mbongou.App Logo"
                 width={40}
                 height={40}
                 className="object-cover"
               />
             </div>
             <span className="font-bold text-xl bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-              Mbongou.App
+               Mbongou.App
             </span>
           </div>
 

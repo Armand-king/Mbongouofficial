@@ -12,8 +12,8 @@ export default function NotFoundPage() {
         <div className="text-center space-y-4">
           <div className="w-20 h-20 mx-auto rounded-full overflow-hidden shadow-lg">
             <Image
-              src="/mbongou.jpeg"
-              alt="MBONGOU Logo"
+              src="/ Mbongou.App.jpeg"
+              alt=" Mbongou.App Logo"
               width={80}
               height={80}
               className="object-cover"

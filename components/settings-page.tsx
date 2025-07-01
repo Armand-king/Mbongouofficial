@@ -788,7 +788,7 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                               <DialogHeader>
                                 <DialogTitle>Modifier le budget</DialogTitle>
                                 <DialogDescription>
-                                  Modifiez le budget pour la catégorie {budget.category.name}
+                                  Modifiez le budget pour la catégorie selectionnée
                                 </DialogDescription>
                               </DialogHeader>
                               <div className="space-y-4">

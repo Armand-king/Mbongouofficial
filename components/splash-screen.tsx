@@ -44,16 +44,21 @@ export default function SplashScreen() {
           <h1 className="text-4xl font-bold text-white"> Mbongou.App</h1>
           <p className="text-white/80 text-lg">Gérez votre budget intelligemment</p>
         </div>
-        <div className="w-64 mx-auto">
-      <div className={styles.progressContainer}>
-      <div
-        className={`${styles.progressBar} ${styles[`progress${Math.round(progress / 10) * 10}`]}`}
-        suppressHydrationWarning
-      />
+        <div className="w-full max-w-md mx-auto my-6">
+  <div className="w-full bg-gray-200 rounded-full h-4 dark:bg-gray-700 overflow-hidden">
+    <div
+      className="h-4 rounded-full transition-all duration-500"
+      style={{
+        width: `${progress}%`,
+        background: "linear-gradient(to right, #16a34a, #2563eb)" // vert -> bleu
+      }}
+    />
+  </div>
+  <div className="text-center text-sm mt-1 text-blue-700 dark:text-blue-300 font-semibold">
+    {progress}%
+  </div>
+</div>
       </div>
-      <p className="text-white/60 text-sm mt-2">{progress}%</p>
     </div>
-        </div>
-      </div>
   )
 }

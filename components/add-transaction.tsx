@@ -194,7 +194,7 @@ export default function AddTransaction({ onBack, onTransactionAdded }: AddTransa
                     id="amount"
                     type="number"
                     step="0.01"
-                    placeholder="Exemple: 120000  Frcfa"
+                    placeholder="Exemple: 1520000"
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
                     className="text-lg"

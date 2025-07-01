@@ -55,6 +55,11 @@ interface SettingsPageProps {
 }
 
 export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const [budgets, setBudgets] = useState<Budget[]>([])
   const [categories, setCategories] = useState<Category[]>([])
   const [userSettings, setUserSettings] = useState<UserSettings | null>(null)
@@ -432,6 +437,10 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
     )
   }
 
+  if (!mounted) {
+    return null // ou un loader si tu veux
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="container mx-auto px-4 py-8">
@@ -561,7 +570,7 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                                     <DialogHeader>
                                       <DialogTitle>Modifier la catégorie</DialogTitle>
                                       <DialogDescription>
-                                        Modifiez le nom de la catégorie "{category.name}"
+                                        Modifiez le nom de la catégorie 
                                       </DialogDescription>
                                     </DialogHeader>
                                     <div className="space-y-4">
@@ -575,7 +584,13 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                                       </div>
                                     </div>
                                     <DialogFooter>
-                                      <Button variant="outline" onClick={() => setEditingCategory(null)}>
+                                      <Button
+                                        variant="outline"
+                                        onClick={() => {
+                                          setEditingCategory(null)
+                                          setIsEditCategoryDialogOpen(false)
+                                        }}
+                                      >
                                         Annuler
                                       </Button>
                                       <Button
@@ -635,7 +650,7 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                                     <DialogHeader>
                                       <DialogTitle>Modifier la catégorie</DialogTitle>
                                       <DialogDescription>
-                                        Modifiez le nom de la catégorie "{category.name}"
+                                        Modifiez le nom de la catégorie
                                       </DialogDescription>
                                     </DialogHeader>
                                     <div className="space-y-4">
@@ -649,7 +664,13 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                                       </div>
                                     </div>
                                     <DialogFooter>
-                                      <Button variant="outline" onClick={() => setEditingCategory(null)}>
+                                      <Button
+                                        variant="outline"
+                                        onClick={() => {
+                                          setEditingCategory(null)
+                                          setIsEditCategoryDialogOpen(false)
+                                        }}
+                                      >
                                         Annuler
                                       </Button>
                                       <Button
@@ -783,7 +804,13 @@ export default function SettingsPage({ onNavigate }: SettingsPageProps = {}) {
                                 </div>
                               </div>
                               <DialogFooter>
-                                <Button variant="outline" onClick={() => setEditingBudget(null)}>
+                                <Button
+                                  variant="outline"
+                                  onClick={() => {
+                                    setEditingBudget(null)
+                                    setIsEditBudgetDialogOpen(false)
+                                  }}
+                                >
                                   Annuler
                                 </Button>
                                 <Button

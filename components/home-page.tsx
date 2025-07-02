@@ -67,8 +67,8 @@ export default function HomePage() {
                       />
                     </div>
                   </div>
-                  <h1 className="text-6xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-                      Mbongou.App
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+                    Mbongou.App
                   </h1>
                   <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                     L'application moderne qui vous aide à gérer votre budget personnel avec intelligence et simplicité
@@ -106,45 +106,45 @@ export default function HomePage() {
                 {/* NEW VIDEO SECTION */}
                 <section className="bg-gradient-to-br from-green-50 via-white to-blue-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 py-16 px-4 md:px-8 lg:px-16">
                   <div className="max-w-6xl mx-auto rounded-xl overflow-hidden shadow-lg bg-white/70 dark:bg-gray-900/70 backdrop-blur-lg border border-white/20 p-6">
-                        <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">
+                    <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">
                       🎥  Mbongou.App  vous offre des conseils de professionnels en vidéos. Profitez-en!
                     </h2>
                     <p className="text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
 
                       Découvrez des astuces pratiques et des tutoriels clairs pour gérer votre budget comme un pro. Apprenez à maîtriser chaque fonctionnalité de Mbongou.App et prenez les meilleures décisions financières au quotidien ! 😉
-                      😉   </p>  
+                      😉   </p>
                     <div className="grid gap-8 md:grid-cols-2">
-  <video
-    controls
-    className="w-full aspect-video rounded-lg shadow-md border border-white/20"
-  >
-    <source src="Best.mp4" type="video/mp4" />
-    Votre navigateur ne supporte pas la lecture vidéo.
-  </video>
+                      <video
+                        controls
+                        className="w-full aspect-video rounded-lg shadow-md border border-white/20"
+                      >
+                        <source src="Best.mp4" type="video/mp4" />
+                        Votre navigateur ne supporte pas la lecture vidéo.
+                      </video>
 
-  <video
-    controls
-    className="w-full aspect-video rounded-lg shadow-md border border-white/20"
-  >
-    <source src="conseil.mp4" type="video/mp4" />
-    Votre navigateur ne supporte pas la lecture vidéo.
-  </video>
+                      <video
+                        controls
+                        className="w-full aspect-video rounded-lg shadow-md border border-white/20"
+                      >
+                        <source src="conseil.mp4" type="video/mp4" />
+                        Votre navigateur ne supporte pas la lecture vidéo.
+                      </video>
 
-  <video
-    controls
-    className="w-full rounded-lg shadow-md border border-white/20 md:col-span-2 aspect-[16/5]"
- 
-  >
-    <source src="Simo.mp4" type="video/mp4" />
-    Votre navigateur ne supporte pas la lecture vidéo.
-  </video>
-</div>
+                      <video
+                        controls
+                        className="w-full rounded-lg shadow-md border border-white/20 md:col-span-2 aspect-[16/5]"
+
+                      >
+                        <source src="Simo.mp4" type="video/mp4" />
+                        Votre navigateur ne supporte pas la lecture vidéo.
+                      </video>
+                    </div>
 
                   </div>
                 </section>
 
 
- <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
                   <Button
                     size="lg"
                     className="text-lg px-8 py-6 bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 border-0 hover:scale-105 transition-transform text-white"
@@ -212,8 +212,8 @@ export default function HomePage() {
                   <CardHeader>
                     <CardTitle className="text-2xl">Prêt à commencer ?</CardTitle>
                     <CardDescription>
-             🌟 Sur cette plateforme, tout est à portée de main : 📊 suivez vos activités sur le Dashboard, 📜 retrouvez vos actions passées grâce à l’Historique et ⚙️ personnalisez votre expérience dans les Paramètres. 💡 Une interface claire, fluide et pensée pour vous simplifier la vie !!!!
-         </CardDescription>
+                      🌟 Sur cette plateforme, tout est à portée de main : 📊 suivez vos activités sur le Dashboard, 📜 retrouvez vos actions passées grâce à l’Historique et ⚙️ personnalisez votre expérience dans les Paramètres. 💡 Une interface claire, fluide et pensée pour vous simplifier la vie !!!!
+                    </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="grid sm:grid-cols-3 gap-4">

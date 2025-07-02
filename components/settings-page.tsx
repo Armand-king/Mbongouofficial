@@ -915,9 +915,9 @@ dark:border-green-400
               <CardTitle>À propos de  Mbongou.App</CardTitle>
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground space-y-2">
-              <p>Version 2.0.0</p>
-              <p>Application de gestion de budget personnel moderne et intuitive</p>
-              <p>Développée avec Next.js, React, Tailwind CSS, Supabase et Prisma</p>
+              <p>Version Officielle</p>
+              <p>Application de gestion de budget personnel moderne et intuitive.</p>
+              <p>Développée avec le plus grand soin afin de garantir la sécurité de vos données.</p>
               <p className="text-xs mt-4">
                 💡 Conseil : Vos données sont synchronisées en temps réel et sauvegardées de manière sécurisée
               </p>
